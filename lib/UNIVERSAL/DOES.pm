@@ -2,7 +2,7 @@ package UNIVERSAL::DOES;
 
 use 5.005_03;
 
-$VERSION = '0.001';
+$VERSION = '0.002';
 
 use Exporter;
 @ISA       = qw(Exporter);
@@ -78,11 +78,11 @@ __END__
 
 =head1 NAME
 
-UNIVERSAL::DOES - Provides does() function, and DOES() method for older perls
+UNIVERSAL::DOES - Provides UNIVERSAL::DOES() method for older perls
 
 =head1 VERSION
 
-This document describes UNIVERSAL::DOES version 0.001.
+This document describes UNIVERSAL::DOES version 0.002.
 
 =for test_synopsis my($class, $object, $role, $thing);
 
@@ -100,15 +100,15 @@ This document describes UNIVERSAL::DOES version 0.001.
 	use UNIVERSAL::DOES qw(does);
 
 	# use does($thing, $role), instead of UNIVERSAL::isa($thing, $role)
-	does($thing, $role);   # thing can be non-invocant
-	does($thing, 'ARRAY'); # also ok
+	does($thing, $role);   # $thing can be non-invocant
+	does($thing, 'ARRAY'); # also ok, $think may have overloaded @{}
 
 =head1 DESCRIPTION
 
 C<UNIVERSAL::DOES> provides a C<UNIVERSAL::DOES()> method for
 compatibility with perl 5.10.x.
 
-This module also provides C<does()> function that checks something
+This module also provides a C<does()> function that checks something
 does some roles, suggested in L<perltodo>.
 
 =head1 FUNCTIONS
@@ -170,7 +170,9 @@ appropriately).
 
 =head1 NOTES
 
-L<perl510delta/"UNIVERSAL::DOES()"> says:
+=over 4
+
+=item L<perl5100delta/"UNIVERSAL::DOES()"> says:
 
 The C<UNIVERSAL> class has a new method, C<DOES()>. It has been added to
 solve semantic problems with the C<isa()> method. C<isa()> checks for
@@ -178,12 +180,14 @@ inheritance, while C<DOES()> has been designed to be overridden when
 module authors use other types of relations between classes (in addition
 to inheritance).
 
-L<perltodo/"A does() built-in"> says:
+=item L<perltodo/"A does() built-in"> says:
 
 Like ref(), only useful. It would call the C<DOES> method on objects; it
 would also tell whether something can be dereferenced as an
 array/hash/etc., or used as a regexp, etc.
 L<http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/2007-03/msg00481.html>
+
+=back
 
 =head1 DEPENDENCIES
 
