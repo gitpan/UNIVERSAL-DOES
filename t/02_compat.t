@@ -7,7 +7,7 @@ BEGIN{
 	require 't/lib/test.pl';
 	require UNIVERSAL::DOES;
 }
-plan tests => 110;
+plan tests => 106;
 
 $a = {};
 bless $a, "Bob";
@@ -115,14 +115,6 @@ like $@, qr/^Alice version 2.719 required--this is only version 2.718 at /;
 ok (eval { $a->VERSION(2.718) });
 is $@, '';
 
-my $subs = join ' ', sort grep { defined &{"UNIVERSAL::$_"} } keys %UNIVERSAL::;
-## The test for import here is *not* because we want to ensure that UNIVERSAL
-## can always import; it is an historical accident that UNIVERSAL can import.
-if ('a' lt 'A') {
-    is $subs, "can import isa DOES VERSION";
-} else {
-    is $subs, "DOES VERSION can import isa";
-}
 
 ok $a->isa("UNIVERSAL");
 
@@ -156,14 +148,6 @@ ok ! $a->can("export_tags");	# a method in Exporter
 
 ok ! UNIVERSAL::isa("\xff\xff\xff\0", 'HASH');
 
-{
-    package Pickup;
-    use UNIVERSAL qw( isa can VERSION );
-
-    ::ok isa "Pickup", UNIVERSAL;
-    ::cmp_ok can( "Pickup", "can" ), '==', \&UNIVERSAL::can;
-    ::ok VERSION "UNIVERSAL" ;
-}
 
 {
     # test isa() and can() on magic variables

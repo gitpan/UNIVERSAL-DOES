@@ -2,7 +2,7 @@ package UNIVERSAL::DOES;
 
 use 5.005_03;
 
-$VERSION = '0.002';
+$VERSION = '0.003';
 
 use Exporter;
 @ISA       = qw(Exporter);
@@ -101,7 +101,7 @@ This document describes UNIVERSAL::DOES version 0.002.
 
 	# use does($thing, $role), instead of UNIVERSAL::isa($thing, $role)
 	does($thing, $role);   # $thing can be non-invocant
-	does($thing, 'ARRAY'); # also ok, $think may have overloaded @{}
+	does($thing, 'ARRAY'); # also ok, $thing may have overloaded @{}
 
 =head1 DESCRIPTION
 

@@ -1,5 +1,10 @@
 Revision history for Perl extension UNIVERSAL::DOES
 
+0.003 Wed Sep 16 11:49:52 2009
+    - No code chnages
+    - fix a typo
+    - fix tests for older perls
+
 0.002 Sun Sep  6 11:12:50 2009
 	- No code changes
 	- Fix documentation
