@@ -1,6 +1,6 @@
 #!perl -w
 use strict;
-use Test::More tests => 44;
+use Test::More tests => 45;
 
 use UNIVERSAL::DOES qw(does);
 
@@ -116,3 +116,8 @@ eval{
 	$foo->DOES(1, 2);
 };
 like $@, qr/Usage: /;
+
+eval { UNIVERSAL::DOES([], "foo") };
+like( $@, qr/Can't call method "DOES" on unblessed reference/,
+    'DOES call error message says DOES, not isa' );
+
