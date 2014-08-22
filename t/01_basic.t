@@ -1,6 +1,6 @@
 #!perl -w
 use strict;
-use Test::More tests => 45;
+use Test::More tests => 44;
 
 use UNIVERSAL::DOES qw(does);
 
@@ -93,8 +93,12 @@ ok !does($bar, 'CODE');
 # for non-object
 
 ok !does(undef, 'UNIVERSAL');
-ok !does(42,    'UNIVERSAL');
-ok !does('!',   'UNIVERSAL');
+
+SKIP: {
+    skip "changed on 5.18", 2 if $] > 5.016;
+    ok !does(42,    'UNIVERSAL');
+    ok !does('!',   'UNIVERSAL');
+}
 
 ok  does([], 'ARRAY');
 ok !does([], 'HASH');
@@ -116,8 +120,3 @@ eval{
 	$foo->DOES(1, 2);
 };
 like $@, qr/Usage: /;
-
-eval { UNIVERSAL::DOES([], "foo") };
-like( $@, qr/Can't call method "DOES" on unblessed reference/,
-    'DOES call error message says DOES, not isa' );
-

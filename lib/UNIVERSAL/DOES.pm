@@ -2,7 +2,7 @@ package UNIVERSAL::DOES;
 
 use 5.005_03;
 
-$VERSION = '0.004';
+$VERSION = '0.005';
 
 use Exporter;
 @ISA       = qw(Exporter);
@@ -76,13 +76,15 @@ sub does {
 1;
 __END__
 
+=for stopwords perls dereferenced
+
 =head1 NAME
 
 UNIVERSAL::DOES - Provides UNIVERSAL::DOES() method for older perls
 
 =head1 VERSION
 
-This document describes UNIVERSAL::DOES version 0.004.
+This document describes UNIVERSAL::DOES version 0.005.
 
 =for test_synopsis my($class, $object, $role, $thing);
 
@@ -101,7 +103,7 @@ This document describes UNIVERSAL::DOES version 0.004.
 
 	# use does($thing, $role), instead of UNIVERSAL::isa($thing, $role)
 	does($thing, $role);   # $thing can be non-invocant
-	does($thing, 'ARRAY'); # also ok, $thing may have overloaded @{}
+	does($thing, 'ARRAY'); # also ok, $think may have overloaded @{}
 
 =head1 DESCRIPTION
 
